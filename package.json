@@ -1,10 +1,13 @@
 {
-  "name": "corcoiote-backend",
-  "type": "module",
-  "devDependencies": {
-    "@biomejs/biome": "2.5.0",
-    "@types/node": "^25.9.3",
-    "lefthook": "^2.1.9",
-    "typescript": "^6.0.3"
-  }
+	"name": "corcoiote-backend",
+	"type": "module",
+	"scripts": {
+		"dev": "node --watch --env-file=.env ./src/server.ts"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.0",
+		"@types/node": "^25.9.3",
+		"lefthook": "^2.1.9",
+		"typescript": "^6.0.3"
+	}
 }
