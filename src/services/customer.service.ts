@@ -6,11 +6,10 @@ export function findAllCustomers(): Customer[] {
 }
 
 export function findCustomerById(id: number): Customer {
-	const customer = customers.find((customer) => {
-		return customer.id === id;
-	});
+	const customer = customers.find((customer) => customer.id === id);
+
 	if (!customer) {
-		throw new Error('Cliente não encontrado.');
+		throw new Error(`Cliente com id ${id} não encontrado.`);
 	}
 
 	return customer;
@@ -34,28 +33,25 @@ export function insertCustomer({ name, email }: CreateCustomer): Customer {
 export function modifyCustomer(
 	id: number,
 	{ name, email, status }: UpdateCustomer,
-) {
-	const customer = customers.find((customer) => {
-		return customer.id === id;
-	});
+): Customer {
+	const customer = customers.find((customer) => customer.id === id);
+
 	if (!customer) {
-		throw new Error('Cliente não encontrado.');
+		throw new Error(`Cliente com id ${id} não encontrado.`);
 	}
 
 	if (name) customer.name = name;
 	if (email) customer.email = email;
-	if (status) customer.status = status;
+	if (status !== undefined) customer.status = status;
 
 	return customer;
 }
 
 export function removeCustomer(id: number): void {
-	const index = customers.findIndex((customer) => {
-		return customer.id === id;
-	});
+	const index = customers.findIndex((customer) => customer.id === id);
 
 	if (index === -1) {
-		throw new Error('Cliente não encontrado.');
+		throw new Error(`Cliente com id ${id} não encontrado.`);
 	}
 
 	customers.splice(index, 1);
