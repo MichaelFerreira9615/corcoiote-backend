@@ -1,3 +1,4 @@
+import { error } from 'node:console';
 import type { NextFunction, Request, Response } from 'express';
 import type { ZodType } from 'zod';
 import { ValidationError } from '../errors/index.ts';
@@ -7,8 +8,14 @@ export default function validate(schema: ZodType) {
 		const result = schema.safeParse(request.body);
 
 		if (!result.success) {
-			next(new ValidationError(result.error.message));
+			const fields = result.error.issues.map((issue) => ({
+				field: issue.path.join(','),
+				message: issue.message,
+			}));
+			return next(new ValidationError('Dados invalidos.', fields));
 		}
+
+		console.log(error);
 
 		request.body = result.data;
 		next();
