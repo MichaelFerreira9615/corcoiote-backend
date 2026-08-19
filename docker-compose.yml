@@ -15,4 +15,5 @@ volumes:
 
 # docker compose up -d (subir o cont)
               #  down  (derrubar cont, com -v para limpar) docker ps para ver status do cont
-              # docker compose exec database psql -U admin -d corcoiote
+              # docker compose exec database psql -U admin -d corcoiote 
+              
