@@ -3,11 +3,7 @@ import * as InvoiceController from '../controllers/invoice.controller.ts';
 import validate from '../middlerwares/validate.ts';
 import {
 	createInvoiceSchema,
-<<<<<<< HEAD
 	updateInvoiceSchema
-=======
-	updateIvoiceSchema
->>>>>>> a6dd812 (feat: finalizar aplicacao para recurso de faturas)
 } from '../schemas/invoice.schema.ts';
 
 const router = Router();

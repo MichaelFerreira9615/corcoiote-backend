@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const createCustomerSchema = z.object({
 	name: z.string().min(1),
 	email: z.email(),
-	imageUrl: z.url().optional()
+	imageUrl: z.url().optional(),
 });
 export const updateCustomerSchema = z.object({
 	name: z.string().min(1).optional(),
