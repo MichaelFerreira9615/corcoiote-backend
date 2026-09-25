@@ -3,9 +3,9 @@ import type {
 	CreateInvoice,
 	UpdateInvoice,
 } from '../schemas/invoice.schema.ts';
-import * InvoiceService from '../services/invoice.service.ts';
+import * as InvoiceService  from '../services/invoice.service.ts';
 
-export function getAllInvoice(request: Request, response: Response)
+export function getAllInvoice(request: Request, response: Response){
     const page = Number(request.query.page) || 1;
 
     const invoices = InvoiceService.findAllInvoices(page);
@@ -24,9 +24,9 @@ export function getInvoiceById(request: Request, response: Response) {
 export function createInvoice(request: Request, response: Response){
     const datas = request.body as CreateInvoice;
     
-    InvoiceService.insertInvoice(datas);
+    const invoice = InvoiceService.insertInvoice(datas);
 
-    response.status(201),json(invoice);
+    response.status(201).json(invoice);
 }
 
 export function updateInvoice(request: Request, response: Response){

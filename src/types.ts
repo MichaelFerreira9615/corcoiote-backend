@@ -1,16 +1,19 @@
+type customerStatus = 'active' ; 'inactive';
+
 export type Customer = {
 	id: number;
 	name: string;
 	email: string;
-	imageUrl: string | null;
+	imageUrl?: string | null;
+	status?:customerStatus;
 };
 
-type invoiceStatus = 'PENDIND', 'PAID';
+type invoiceStatus = 'PENDIND' ; 'PAID';
 
 export type Invoice = {
 	id:number;
-	amount:number:
-	status:InvoiceStatus;
+	amount:number;
+	status:invoiceStatus;
 	date: Date;
 	customerId:number;
 	createdAt:Date;

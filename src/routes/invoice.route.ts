@@ -3,7 +3,7 @@ import * as InvoiceController from '../controllers/invoice.controller.ts';
 import validate from '../middlerwares/validate.ts';
 import {
 	createInvoiceSchema,
-	updateIvoiceSchema,
+	updateInvoiceSchema
 } from '../schemas/invoice.schema.ts';
 
 const router = Router();

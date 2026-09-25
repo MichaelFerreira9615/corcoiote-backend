@@ -11,7 +11,7 @@ export const createInvoiceSchema = z.object({
     .positive('O vaor deve ser maior que zero.'),
 });
 
-export const updadeInvoiceSchema = createInvoiceSchema.partial();
+export const updateInvoiceSchema = createInvoiceSchema.partial();
 
 export type CreateInvoice = z.infer<typeof createInvoiceSchema>;
-export type UpdateInvoice = z.infer<typeof updadeInvoiceSchema>;
+export type UpdateInvoice = z.infer<typeof updateInvoiceSchema>;
