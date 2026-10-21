@@ -11,20 +11,21 @@ export function getAllCustomers(_request: Request, response: Response): void {
 	response.status(200).json(customers);
 }
 
-export function getCustomerById(request: Request, response: Response): void {
+export  async function getCustomerById(request: Request, response: Response) {
 	const id = Number(request.params.id);
 
-	const customer = CustomerService.findCustomerById(id);
+	const customer =  await CustomerService.findCustomerById(id);
 
 	response.status(200).json(customer);
 }
 
-export function createCustomer(request: Request, response: Response): void {
-	const { name, email } = request.body as CreateCustomer;
+export async function createCustomer(request: Request, response: Response) {
+	const { name, email, imageUrl } = request.body as CreateCustomer;
 
-	const customer = CustomerService.insertCustomer({
+	const customer = await CustomerService.insertCustomer({
 		name,
 		email,
+		imageUrl
 	});
 
 	response.status(201).json(customer);

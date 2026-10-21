@@ -3,12 +3,12 @@ import { z } from 'zod';
 export const createInvoiceSchema = z.object({
     amount:z
     .number('Entrada inválida : esperava-se um nùmero.')
-    .positive('O vaor deve ser maior que zero.'),
+    .positive('O valor deve ser maior que zero.'),
     status: z.enum(['PENDING', 'PAID']),
     date: z.coerce.date('Data inválida.'),
     customerId: z
     .number('Entrada inválida : esperava-se um nùmero.')
-    .positive('O vaor deve ser maior que zero.'),
+    .positive('O valor deve ser maior que zero.'),
 });
 
 export const updateInvoiceSchema = createInvoiceSchema.partial();

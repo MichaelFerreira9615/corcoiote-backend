@@ -16,21 +16,35 @@ describe('GET /customers', () =>{
         const response = await request(app).get('/customers/999');
 
         expect(response.status).toBe(404);
-        expect(response.body.message).toBe('cliente não encontrado.');
+        expect(response.body.message).toBe('Cliente não encontrado.');
     })
 });
 
-describe('POST / customers', () =>{
-    test('cria um cliente e deolve 201 com o registro criado', async () =>{
+describe('POST /customers', () =>{
+    test('cria um cliente e devolve 201 com o registro criado', async () =>{
         const response = await request(app).post('/customers').send({
             name: 'Timoteo Bessa',
-            email: 'timoteo@email,com'
+            email: 'timoteo@email.com'
     });
 
     expect(response.status).toBe(201)
     expect(response.body).toMatchObject({
         name: 'Timoteo Bessa',
         email: 'timoteo@email.com'
-    })
-    })
+    });
+    });
+
+    test('retorna erro 400 quando o email e invalido', async () =>{
+        const response = await request(app).post('/customers').send({
+            name: 'Timoteo Bessa',
+            email: 'nao e um email',
+    });
+
+    expect(response.status).toBe(400)
+    expect(response.body.fields).toEqual(
+        expect.arrayContaining([
+                expect.objectContaining({ field: 'email'})
+            ])
+        )
+    });
 });

@@ -16,18 +16,20 @@ export async function findCustomerById(id: number): Promise<Customer> {
 	const customer = await prisma.customer.findUnique({ where: {id} });
 
 	if (!customer) {
-		throw new NotFoundError(`Cliente com id ${id} não encontrado.`);
+		throw new NotFoundError(`Cliente não encontrado.`);
 	}
 
 	return customer;
 }
 
-export async function insertCustomer({ name, email }: CreateCustomer): Promise<Customer> {
+export async function insertCustomer({ name, email, imageUrl }: CreateCustomer): Promise<Customer> {
 
 
 	const customer = await prisma.customer.create({ data: {
 		name,
-		email}});
+		email,
+		imageUrl
+	}});
 
 		return customer;
 }
@@ -38,7 +40,7 @@ export async function modifyCustomer(
 	const findCustomer = await prisma.customer.findUnique({ where: {id} });
 
 	if (!findCustomer){
-		throw new NotFoundError ('Ciente não encontrado');
+		throw new NotFoundError ('Cliente não encontrado');
 	}
 
 	const customer = await prisma.customer.update({
@@ -61,7 +63,7 @@ export async function removeCustomer(id: number): Promise<void> {
 	const findCustomer = await prisma.customer.findUnique({ where: {id} });
 
 	if (!findCustomer){
-		throw new NotFoundError ('Ciente não encontrado');
+		throw new NotFoundError ('Cliente não encontrado');
 	}
 
 	await prisma.customer.delete({ where: {id}});
